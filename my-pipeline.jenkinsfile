@@ -1,22 +1,28 @@
 pipeline {
     agent any
+
     stages {
-        stage ('PULL STAGE') {
+        stage('PULL STAGE') {
             steps {
+                git url: 'https://github.com/RashiIngale03/Jenkins.git'
                 echo 'Pull Success'
             }
         }
-        stage ('BUILD STAGE') {
+
+        stage('BUILD STAGE') {
             steps {
+                sh 'mvn clean package -DskipTests'
                 echo 'Build Success'
             }
         }
-        stage ('TEST STAGE') {
+
+        stage('TEST STAGE') {
             steps {
                 echo 'Test Success'
             }
         }
-        stage ('DEPLOY STAGE') {
+
+        stage('DEPLOY STAGE') {
             steps {
                 echo 'Deploy Success'
             }
