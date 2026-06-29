@@ -1,31 +1,48 @@
 pipeline {
     agent any
 
+    environment {
+        JAVA_HOME = "/usr/lib/jvm/java-17-openjdk-amd64"
+        PATH = "${JAVA_HOME}/bin:${env.PATH}"
+    }
+
     stages {
+
         stage('PULL STAGE') {
             steps {
-                git url: 'https://github.com/RashiIngale03/Jenkins.git'
-                echo 'Pull Success'
+                git  https://github.com/RashiIngale03/Jenkins.git 
+                echo 'PULL SUCCESS'
             }
         }
 
         stage('BUILD STAGE') {
             steps {
-                sh 'mvn clean package -DskipTests'
-                echo 'Build Success'
+                dir('backend') {
+                    sh 'java -version'
+                    sh 'mvn clean package -DskipTests'
+                }
+                echo 'BUILD SUCCESS'
             }
         }
 
         stage('TEST STAGE') {
             steps {
-                echo 'Test Success'
+               
+                echo 'TEST SUCCESS'
             }
         }
 
-        stage('DEPLOY STAGE') {
+
+        stage('CONTINUOUS DELIEVERY') {
             steps {
-                echo 'Deploy Success'
+              echo 'Delivery success'
+            }
+        }
+
+         stage('DEPLOY STAGE') {
+            steps {
+                echo 'DEPLOY SUCCESS'
             }
         }
     }
-}
+ }
