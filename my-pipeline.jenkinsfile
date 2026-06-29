@@ -23,7 +23,7 @@ pipeline {
             steps {
                 dir('backend') {
                     sh 'java --version'
-                    sh 'mvn clean package -DskipTests'
+                    sh 'mvn clean package'
                     echo 'BUILD SUCCESS'
                 }
             }
