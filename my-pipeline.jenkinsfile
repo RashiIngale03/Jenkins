@@ -20,8 +20,9 @@ pipeline {
                 dir('backend') {
                     sh 'java -version'
                     sh 'mvn clean package -DskipTests'
+                    echo 'BUILD SUCCESS'
+
                 }
-                echo 'BUILD SUCCESS'
             }
         }
 
