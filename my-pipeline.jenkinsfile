@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools{
+        maven 'Maven1'
+    }
+
     environment {
         JAVA_HOME = "/usr/lib/jvm/java-17-openjdk-amd64"
         PATH = "${JAVA_HOME}/bin:${env.PATH}"
@@ -18,10 +22,9 @@ pipeline {
         stage('BUILD STAGE') {
             steps {
                 dir('backend') {
-                    sh 'java -version'
+                    sh 'java --version'
                     sh 'mvn clean package -DskipTests'
                     echo 'BUILD SUCCESS'
-
                 }
             }
         }
